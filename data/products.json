@@ -14,7 +14,8 @@
     "height": 30,
     "width": 10,
     "isPrize": false,
-    "points_required": 0
+    "points_required": 0,
+    "isOffer": true 
   },
   {
     "id": 2,
@@ -31,7 +32,8 @@
     "height": 5,
     "width": 3,
     "isPrize": true,
-    "points_required": 150
+    "points_required": 150,
+    "isOffer": true 
   },
   {
     "id": 3,
@@ -48,7 +50,8 @@
     "height": 20,
     "width": 20,
     "isPrize": false,
-    "points_required": 0
+    "points_required": 0,
+    "isOffer": false
   },
   {
     "id": 4,
@@ -65,6 +68,63 @@
     "height": 25,
     "width": 25,
     "isPrize": true,
-    "points_required": 300
+    "points_required": 300,
+    "isOffer": false
+  },
+
+  {
+    "id": 5,
+    "name": "Puzzle Mapa",
+    "description": "Puzzle de 100 piezas",
+    "price": 1500,
+    "stock": true,
+    "age": "8 años en adelante",
+    "character": "Avengers",
+    "category": "Juegos de mesa",
+    "img": "puzzle2.png",
+    "extraImages": ["puzzle2.png"],
+    "weight": 500,
+    "height": 25,
+    "width": 25,
+    "isPrize": true,
+    "points_required": 300,
+    "isOffer": false
+  },
+    {
+    "id": 6,
+    "name": "Puzzle Pokemon",
+    "description": "Puzzle de 100 piezas",
+    "price": 1500,
+    "stock": true,
+    "age": "8 años en adelante",
+    "character": "Avengers",
+    "category": "Juegos de mesa",
+    "img": "puzzle3.jpg",
+    "extraImages": ["puzzle2.png"],
+    "weight": 500,
+    "height": 25,
+    "width": 25,
+    "isPrize": true,
+    "points_required": 300,
+    "isOffer": false
+  },
+
+  {
+    "id": 7,
+    "name": "Eco Puzzle",
+    "description": "Puzzle de 100 piezas",
+    "price": 1500,
+    "stock": true,
+    "age": "8 años en adelante",
+    "character": "Avengers",
+    "category": "Juegos de mesa",
+    "img": "puzzle4.png",
+    "extraImages": ["puzzle2.png"],
+    "weight": 500,
+    "height": 25,
+    "width": 25,
+    "isPrize": true,
+    "points_required": 300,
+    "isOffer": false
   }
 ]
