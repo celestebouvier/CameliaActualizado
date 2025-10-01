@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra - Camelia</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/cart.css"> <script defer src="js/cart.js"></script> <script defer src="js/checkout.js"></script> <script defer src="js/auth.js"></script>
+    <script defer src="js/load-components.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="content-wrap">
+        <div id="header-placeholder"></div>
+        
+        <div class="container cart-page">
+            <h1 class="page-title">Finalizar Compra (3 pasos)</h1>
+            
+            <main class="cart-layout">
+                <section class="checkout-options-container">
+                    
+                    <div class="checkout-section shipping-section">
+                        <h2>1. Selecciona tu Envío</h2>
+                        <div id="shipping-options" class="shipping-options-grid">
+                            <label class="shipping-option">
+                                <input type="radio" name="shipping" value="domicilio" data-cost="1200" checked>
+                                <span class="shipping-label">Envío Estándar a Domicilio</span>
+                                <span class="shipping-detail">Recibe en 3 a 5 días hábiles. Costo: $1.200</span>
+                            </label>
+                            <label class="shipping-option">
+                                <input type="radio" name="shipping" value="retiro-sucursal" data-cost="0">
+                                <span class="shipping-label">Retiro en Sucursal Camelia (Gratis)</span>
+                                <span class="shipping-detail">Retira mañana en el punto de Camelia más cercano. Costo: $0</span>
+                            </label>
+                            </div>
+                    </div>
+
+                    <div class="checkout-section eco-packaging-section">
+                        <h2>2. Opciones Extra</h2>
+                        <label class="eco-option">
+                            <input type="checkbox" id="eco-packaging" data-cost="350">
+                            <span>Deseo Empaque Ecológico y de Regalo</span>
+                            <p class="eco-detail">Por un costo adicional de **$350**, envolvemos tus juguetes con materiales 100% reciclables y una tarjeta de regalo.</p>
+                        </label>
+                    </div>
+
+                    <div class="checkout-section payment-section">
+                        <h2>3. Selecciona tu Pago</h2>
+                        <div class="payment-options">
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="mercadopago" checked>
+                                <span class="payment-label">Mercado Pago</span>
+                                <span class="payment-logo">
+                                    <i class="fas fa-wallet" style="color:#00c0ff;"></i>
+                                </span>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="tarjeta">
+                                <span class="payment-label">Tarjeta de Crédito / Débito</span>
+                                <span class="payment-logo">
+                                    <i class="fas fa-credit-card"></i>
+                                </span>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="transferencia">
+                                <span class="payment-label">Transferencia Bancaria (CBU)</span>
+                                <span class="payment-logo">
+                                    <i class="fas fa-money-check-alt"></i>
+                                </span>
+                            </label>
+                        </div>
+                        <p style="margin-top: 15px; font-size: 0.9rem; color: #777;">*Al presionar "Pagar", serás redirigido a la pasarela de pago seleccionada para completar la transacción.</p>
+                    </div>
+
+                </section>
+                
+                <aside class="cart-summary-container">
+                    <div class="cart-summary-box final-summary">
+                        <h2>Resumen Final</h2>
+                        <div class="summary-details">
+                            <p>Subtotal: <span id="checkout-subtotal">$0</span></p>
+                            <p class="summary-packaging">Empaque Ecológico: <span id="checkout-packaging-cost">$0</span></p>
+                            <p class="summary-shipping">Costo de Envío: <span id="checkout-shipping-cost">$1.200</span></p>
+                            <hr>
+                            <p class="summary-total-final">Total a Pagar: <span id="checkout-total">$1.200</span></p>
+                        </div>
+                        
+                        <button id="finalize-purchase-btn" class="finalize-button">PAGAR Y FINALIZAR COMPRA</button>
+                    </div>
+                </aside>
+            </main>
+        </div>
+
+    </div>
+    <div id="footer-placeholder"></div>
+</body>
+</html>

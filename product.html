@@ -1,26 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Detalle del Producto - Camelia</title>
-  <link rel="stylesheet" href="css/styles.css"/>
-  <script defer src="js/cart.js"></script>
-  <script defer src="js/product.js"></script>
-  <script defer src="js/auth.js"></script>
-  <script defer src="js/load-components.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="product-title">Detalle del Producto - Camelia</title>
+    <link rel="stylesheet" href="css/catalogstyles.css"> 
+    <link rel="stylesheet" href="css/productstyles.css"> 
+    <script defer src="js/cart.js"></script>
+    <script defer src="js/product.js"></script> 
+    <script defer src="js/auth.js"></script>
+    <script defer src="js/load-components.js"></script>
+    <script defer src="js/script.js"></script> 
 </head>
 <body>
-  <div id="header-placeholder"></div>
+    <div class="content-wrap">
+        <div id="header-placeholder"></div>
 
-<main class="product-detail-container">
-  <div class="product-images">
-    <img id="main-img" class="product-main-img" src="" alt="Producto"/>
-    <div id="thumbs" class="product-thumbs"></div>
-  </div>
-  <div class="product-info" id="product-info"></div>
-</main>
+        <div class="container">
+            <main class="product-detail-layout">
+                <div class="back-to-catalog">
+                <a href="catalog.html" id="back-button">← Volver al catálogo</a>
+                </div>
+            
+                <main class="product-detail-layout">
+                <div class="product-images-area">
 
-  <div id="footer-placeholder"></div>
+                <div class="product-images-area">
+                    <div id="thumbs" class="product-thumbs">
+                        </div>
+                    <div class="product-main-image">
+                        <img id="main-img" src="" alt="Imagen principal del producto">
+                    </div>
+                </div>
+
+                <div id="product-info" class="product-info">
+                    <h1 id="product-name">Nombre del Producto</h1>
+                    <p class="product-description" id="product-description">Descripción detallada del producto.</p>
+                    <p class="product-price" id="product-price">Precio: $0.00</p>
+                    <p id="product-stock" class="product-stock">Stock: Disponible</p>
+                    <p id="product-age-rec">Edad recomendada: </p>
+                    <p id="product-category">Categoría: </p>
+                    <p id="product-character">Personaje: </p>
+                    <p id="product-dimensions">Dimensiones: </p>
+                    <p id="product-weight">Peso: </p>
+                    
+                    <div class="product-details-extra">
+                        <h3>Detalles Adicionales</h3>
+                        <ul id="product-extra-details">
+                            </ul>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+    </div>
+    <div id="footer-placeholder"></div>
 </body>
 </html>

@@ -4,11 +4,12 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Catálogo - Camelia</title>
-  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="css/catalogstyles.css"/>
   <script defer src="js/cart.js"></script>
   <script defer src="js/catalog.js"></script>
   <script defer src="js/auth.js"></script>
   <script defer src="js/load-components.js"></script>
+  <script defer src="js/script.js"></script> 
 </head>
 
 <body>
@@ -61,18 +62,23 @@
       <button id="reset-filters">Limpiar filtros</button>
     </aside>
 
-   <section class="catalog-products">
-   <h2>Catálogo de Productos</h2>
-   <div id="catalog-list" class="product-grid"></div>
-   <div id="pagination" class="pagination"></div>
-   </section>
+                <section class="catalog-products">
+                    
+                    <div class="catalog-header">
+                        <h2>Catálogo de Productos</h2>
+                        <div class="sort-controls">
+                            <label for="sort-order">Ordenar por:</label>
+                            <select id="sort-order">
+                                <option value="name-asc">Nombre (A-Z)</option>
+                                <option value="price-asc">Menor Precio</option>
+                                <option value="price-desc">Mayor Precio</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="catalog-list" class="product-grid"></div>
+                    <div id="pagination" class="pagination"></div> 
+                </section>
 
-    <!-- Controles de paginación -->
-    <div class="pagination">
-    <button id="prev-page">Anterior</button>
-    <span id="page-info"></span>
-    <button id="next-page">Siguiente</button>
-    </div>
 
   </main></div>
 
