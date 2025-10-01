@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Historial de Compras - Camelia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="css/styles.css">
+  <script defer src="js/load-components.js"></script>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <main class="history-container">
+    <h2>Historial de Compras</h2>
+    <div id="history-list"></div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      if (!currentUser) {
+        alert("Debes iniciar sesión para ver tu historial.");
+        window.location.href = "login.html";
+        return;
+      }
+
+      const history = JSON.parse(localStorage.getItem("purchaseHistory")) || [];
+      const userHistory = history.filter(h => h.userEmail === currentUser.email);
+
+      const listEl = document.getElementById("history-list");
+      if (userHistory.length === 0) {
+        listEl.innerHTML = "<p>No tienes compras registradas aún.</p>";
+        return;
+      }
+
+      userHistory.forEach(order => {
+        const div = document.createElement("div");
+        div.className = "order-card";
+        div.innerHTML = `
+          <div class="order-header">
+            <p><strong>Fecha:</strong> ${order.date}</p>
+            <p><strong>Total:</strong> $${order.total}</p>
+          </div>
+          <ul class="order-items">
+            ${order.items.map(i => `
+              <li>
+                <img src="img/${i.img}" alt="${i.name}" />
+                <span>${i.qty} × ${i.name}</span>
+                <span class="price">$${i.price}</span>
+              </li>
+            `).join("")}
+          </ul>
+        `;
+        listEl.appendChild(div);
+      });
+    });
+  </script>
+</body>
+</html>
+

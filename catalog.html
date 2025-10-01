@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catálogo - Camelia</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <script defer src="js/cart.js"></script>
+  <script defer src="js/catalog.js"></script>
+  <script defer src="js/auth.js"></script>
+  <script defer src="js/load-components.js"></script>
+</head>
+
+<body>
+  <div class="content-wrap"> 
+  <div id="header-placeholder"></div> 
+
+  <div class="container">
+  <main class="catalog-container">
+    <aside class="filters">
+      <h3>Filtros</h3>
+
+      <label for="filter-age">Edad recomendada</label>
+      <select id="filter-age">
+        <option value="">Todas</option>
+        <option value="Bebés">Bebés</option>
+        <option value="+3 años">+3 años</option>
+        <option value="+5 años">+5 años</option>
+        <option value="8 años en adelante">8 años en adelante</option>
+      </select>
+
+      <label for="filter-type">Tipo de juguete</label>
+      <select id="filter-type">
+        <option value="">Todos</option>
+        <option value="Acción">Acción</option>
+        <option value="Aire libre">Aire libre</option>
+        <option value="Bloques y construcción">Bloques y construcción</option>
+        <option value="Juegos de mesa">Juegos de mesa</option>
+        <option value="Muñecas">Muñecas</option>
+        <option value="Musicales">Musicales</option>
+        <option value="Peluches">Peluches</option>
+        <option value="Vehículos">Vehículos</option>
+      </select>
+
+      <label for="filter-character">Personajes</label>
+      <select id="filter-character">
+        <option value="">Todos</option>
+        <option value="Avengers">Avengers</option>
+        <option value="Barbie">Barbie</option>
+        <option value="Frozen">Frozen</option>
+        <option value="Hot Wheels">Hot Wheels</option>
+        <option value="Mickey y Minnie Mouse">Mickey y Minnie Mouse</option>
+        <option value="Minecraft">Minecraft</option>
+        <option value="Paw Patrol">Paw Patrol</option>
+        <option value="Peppa Pig">Peppa Pig</option>
+        <option value="Spiderman">Spiderman</option>
+        <option value="Star Wars">Star Wars</option>
+        <option value="Toy Story">Toy Story</option>
+      </select>
+
+      <button id="reset-filters">Limpiar filtros</button>
+    </aside>
+
+   <section class="catalog-products">
+   <h2>Catálogo de Productos</h2>
+   <div id="catalog-list" class="product-grid"></div>
+   <div id="pagination" class="pagination"></div>
+   </section>
+
+    <!-- Controles de paginación -->
+    <div class="pagination">
+    <button id="prev-page">Anterior</button>
+    <span id="page-info"></span>
+    <button id="next-page">Siguiente</button>
+    </div>
+
+  </main></div>
+
+ </div> <div id="footer-placeholder"></div>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carrito - Camelia</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <script defer src="js/cart.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="img/Logo Camelia.png" alt="Camelia Logo" class="logo-img">
+            </div>
+            <div class="search-container">
+                <input type="text" placeholder="Buscar juguetes..." class="search-input">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <div class="header-actions">
+                <a href="register.html" class="profile-btn">
+                <i class="fas fa-sign-in-alt"></i>
+                Registrate
+                </a>
+                <span id="user-info" style="display:none;"></span>
+                <a href="login.html" class="auth-btn">
+                <i class="fas fa-sign-in-alt"></i>
+                Iniciar Sesión
+                </a>
+               <a href="#" id="logout-btn" style="display:none">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </a>
+                <button class="profile-btn">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+                <a href=cart.html class="cart-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+  <main>
+    <section class="cart-container">
+      <h2>Tu carrito de compras</h2>
+      <div id="cart-items"></div>
+      <div class="cart-summary">
+        <p>Total: $<span id="cart-total">0</span></p>
+        <button id="checkout-btn">Confirmar compra</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Camelia Juguetería - Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  if (!currentUser) {
+    alert("Debes iniciar sesión para ver el carrito.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  const cartItemsEl = document.getElementById("cart-items");
+  const cartTotalEl = document.getElementById("cart-total");
+  const checkoutBtn = document.getElementById("checkout-btn");
+
+  function renderCart() {
+    cartItemsEl.innerHTML = "";
+    const items = cart.items;
+
+    if (!items || items.length === 0) {
+      cartItemsEl.innerHTML = "<p>Tu carrito está vacío.</p>";
+      cartTotalEl.textContent = "0";
+      return;
+    }
+
+    items.forEach((item, index) => {
+      const div = document.createElement("div");
+      div.className = "cart-item";
+
+      const subtotal = (item.price * (item.qty || 1)).toFixed(0);
+
+      div.innerHTML = `
+        <div style="display:flex; gap:12px; align-items:center;">
+          <img src="img/${item.img}" alt="${escapeHtml(item.name)}" width="80" style="border-radius:8px;"/>
+          <div>
+            <h3>${escapeHtml(item.name)}</h3>
+            <p>Edad: ${escapeHtml(item.age || '')}</p>
+            <p>Precio unitario: $${item.price}</p>
+            <p>Subtotal: $<span class="item-subtotal">${subtotal}</span></p>
+          </div>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <input type="number" min="1" value="${item.qty || 1}" class="qty-input" data-index="${index}" style="width:70px; padding:6px; border-radius:6px;"/>
+          <button class="remove-btn" data-index="${index}">Eliminar</button>
+        </div>
+      `;
+      cartItemsEl.appendChild(div);
+    });
+
+    cartTotalEl.textContent = cart.getTotal();
+    attachCartEvents();
+  }
+
+  function attachCartEvents() {
+    // quantity inputs
+    cartItemsEl.querySelectorAll(".qty-input").forEach(input => {
+      input.addEventListener("change", (e) => {
+        const idx = parseInt(e.target.dataset.index, 10);
+        const qty = parseInt(e.target.value, 10) || 1;
+        cart.updateQuantity(idx, qty);
+        renderCart();
+      });
+    });
+
+    // remove buttons
+    cartItemsEl.querySelectorAll(".remove-btn").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const idx = parseInt(e.target.dataset.index, 10);
+        cart.remove(idx);
+        renderCart();
+      });
+    });
+  }
+
+checkoutBtn.addEventListener("click", () => {
+  if (!cart.items || cart.items.length === 0) {
+    alert("Tu carrito está vacío.");
+    return;
+  }
+
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  if (!currentUser) {
+    alert("Debes iniciar sesión.");
+    return;
+  }
+
+  // Historial: obtenemos array previo o vacío
+  let history = JSON.parse(localStorage.getItem("purchaseHistory")) || [];
+  history.push({
+    userEmail: currentUser.email,
+    date: new Date().toLocaleString(),
+    items: [...cart.items],
+    total: cart.getTotal()
+  });
+  localStorage.setItem("purchaseHistory", JSON.stringify(history));
+
+  alert("Compra confirmada. Gracias por elegir Camelia.");
+  cart.clear();
+  renderCart();
+});
+
+
+  function escapeHtml(str) {
+    if (!str) return "";
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  renderCart();
+});
+</script>
+
+</body>
+</html>
