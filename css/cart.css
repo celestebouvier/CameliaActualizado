@@ -1,0 +1,265 @@
+/* css/cart.css */
+
+/* --- Variables y Diseño General --- */
+:root {
+    --primary-color: #ff69b4;
+    --secondary-color: #87ceeb;
+    --text-color: #333;
+    --light-bg: #f8f8f8;
+    --border-color: #ddd;
+}
+
+.cart-page {
+    padding: 30px 0;
+}
+
+.cart-layout {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    align-items: flex-start; /* Alinea la parte superior de las secciones */
+}
+
+/* -------------------- Columna Principal: Items y Opciones -------------------- */
+.cart-items-container, .checkout-options-container {
+    flex: 2 1 600px; /* Ocupa la mayor parte del espacio */
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.cart-product-list {
+    margin-top: 10px;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 80px 3fr 1fr 1fr 50px; /* Imagen, Detalles, Cantidad, Precio, Eliminar */
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    gap: 15px;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.cart-item-details h3 {
+    font-size: 1rem;
+    margin: 0;
+    color: var(--text-color);
+}
+
+.cart-item-details p {
+    font-size: 0.85rem;
+    color: #777;
+    margin: 2px 0 0;
+}
+
+.cart-item-quantity .qty-input {
+    width: 60px;
+    padding: 6px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.cart-item-price {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-align: right;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+    text-align: center;
+}
+
+.remove-btn:hover {
+    color: #c0392b;
+}
+
+.empty-cart-message {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.1rem;
+    color: #999;
+}
+
+/* -------------------- Columna Lateral: Resumen -------------------- */
+.cart-summary-container {
+    flex: 1 1 300px;
+    position: sticky; /* Fija el resumen mientras haces scroll */
+    top: 20px;
+}
+
+.cart-summary-box {
+    background-color: var(--light-bg);
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.cart-summary-box h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.summary-details p {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.summary-total-final {
+    font-size: 1.6rem !important;
+    font-weight: bold;
+    margin-top: 15px;
+    border-top: 2px solid var(--primary-color);
+    padding-top: 10px;
+}
+
+.summary-total-final span {
+    color: var(--primary-color);
+}
+
+.checkout-button, .finalize-button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.checkout-button:hover:not(:disabled), .finalize-button:hover:not(:disabled) {
+    background-color: #27ae60;
+}
+
+.checkout-button:disabled, .finalize-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* -------------------- Estilos Específicos de Checkout -------------------- */
+
+.checkout-section {
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.checkout-section h2 {
+    font-size: 1.3rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+/* Estilo para las opciones de Envío/Pago (Tipo Tarjeta/ML) */
+.shipping-options-grid, .payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.shipping-option, .payment-option {
+    display: block;
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #fff;
+    position: relative;
+}
+
+.shipping-option:hover, .payment-option:hover {
+    border-color: var(--secondary-color);
+}
+
+.shipping-option input:checked + .shipping-label,
+.payment-option input:checked + .payment-label {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.shipping-label, .payment-label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.shipping-detail, .eco-detail {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+.payment-logo {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    max-height: 25px;
+}
+
+/* Estilo para el empaque ecológico */
+.eco-option {
+    display: block;
+    padding: 10px;
+    background: var(--light-bg);
+    border-radius: 6px;
+    border: 1px dashed #777;
+    cursor: pointer;
+}
+
+.eco-option input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+@media (max-width: 900px) {
+    .cart-layout {
+        flex-direction: column;
+    }
+
+    .cart-items-container, .cart-summary-container, .checkout-options-container {
+        width: 100%;
+        max-width: none;
+        position: static;
+    }
+
+    .cart-item {
+        grid-template-columns: 60px 2fr 1fr 1fr 40px;
+        gap: 10px;
+    }
+
+    .cart-item-image {
+        width: 60px;
+        height: 60px;
+    }
+}

@@ -1,0 +1,223 @@
+:root {
+    --primary-pink: #ff69b4;
+    --primary-blue: #87ceeb;
+    --white: #ffffff;
+    --light-gray: #f8f9ff;
+    --dark-gray: #333;
+    --text-gray: #666;
+    --background-gradient: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
+
+}
+
+/* 2. Hace que el contenido principal crezca y empuje el footer hacia abajo */
+.content-wrap {
+    flex: 1; /* Permite que este contenedor crezca y ocupe el espacio restante */
+}
+
+.container {
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+/* 3. Estilos del Layout del Catálogo (filtros y productos) */
+.catalog-container {
+    display: flex;
+    gap: 1rem; /* Espacio entre la barra lateral y los productos */
+    padding-top: 20px;
+}
+
+.filters {
+    flex-basis: 200px; /* Ancho fijo para la barra de filtros en escritorio */
+    flex-shrink: 0;
+    padding: 15px;
+    border: 1px solid #87ceeb;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.filters h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: #87ceeb;
+}
+
+.filters label,
+.filters select,
+.filters button {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.75rem;
+}
+
+.filters select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.filters button#reset-filters {
+    background-color: #ff69b4;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1.5rem;
+}
+
+.catalog-products {
+    flex-grow: 1; /* Ocupa el espacio restante */
+}
+
+#catalog-list {
+    display: grid;
+    /* CAMBIO CLAVE: Fuerzas 6 columnas de ancho igual (1fr) */
+    grid-template-columns: repeat(6, 1fr); 
+    gap: 1.25rem;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    height: 230px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    background: #fff;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product-card .product-img {
+    width: 100%;
+    aspect-ratio: 1 / 1; 
+    height: 120px;
+    max-height: 120px;
+    min-height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    background: #f5f5f5;
+    display: block;
+}
+
+.product-card h4 {
+    font-size: 0.9rem;
+    margin: 5px 0 3px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-card p.price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #87ceeb; 
+    margin: 0;
+}
+
+.product-card button.add-to-cart { 
+    margin-top: auto; /* Flexbox empuja el botón al final */
+    width: 100%; 
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff69b4; 
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.product-card button.add-to-cart:hover {
+    background-color: #87ceeb;
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.pagination button {
+    padding: 8px 15px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.pagination button:hover:not(:disabled) {
+    background-color: #e0e0e0;
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#page-info {
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+
+/* ======================================= */
+/* 5. MEDIA QUERIES para Responsividad */
+/* ======================================= */
+
+/* Dispositivos Tablet (Ancho <= 1024px) */
+@media (max-width: 1024px) {
+    /* Reducimos las columnas de 6 a 4 */
+    #catalog-list {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Dispositivos Móviles (Ancho <= 768px) */
+@media (max-width: 768px) {
+    /* El contenedor del catálogo se apila (filtros arriba, productos abajo) */
+    .catalog-container {
+        flex-direction: column;
+    }
+
+    .filters {
+        flex-basis: auto; /* La barra de filtros ocupa todo el ancho */
+        margin-bottom: 1.5rem;
+    }
+
+    /* Reducimos las columnas a 2 para móviles */
+    #catalog-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem; 
+    }
+
+    .product-card {
+        height: auto; /* Altura dinámica para tarjetas */
+        min-height: 200px; 
+        padding: 8px;
+    }
+
+    /* Ajuste de tipografía para móviles */
+    .product-card h4 {
+        font-size: 0.85rem;
+    }
+
+    .product-card p.price {
+        font-size: 1rem;
+    }
+}
