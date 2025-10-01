@@ -64,58 +64,39 @@ class Carousel {
         }
     }
 }
-class Search {
-    constructor() {
-        this.searchInput = document.querySelector('.search-input');
-        this.searchBtn = document.querySelector('.search-btn');
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.querySelector('.search-input');
+    const searchBtn = document.querySelector('.search-btn');
+
+    // Función que maneja la búsqueda y la redirección
+    const handleSearch = () => {
+        const query = searchInput.value.trim();
         
-        this.init();
-    }
-    
-    init() {
-        if (this.searchBtn) {
-            this.searchBtn.addEventListener('click', () => this.performSearch());
-        }
-        
-        if (this.searchInput) {
-            this.searchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    this.performSearch();
-                }
-            });
-            
-            this.searchInput.addEventListener('input', () => this.showSuggestions());
-        }
-    }
-    
-    performSearch() {
-        const query = this.searchInput.value.trim();
         if (query) {
-            this.animateSearch();
-            // Implementación de búsqueda simulada, similar a tu ejemplo
-            console.log(`Buscando productos relacionados con: ${query}`);
-            alert(`Buscando productos relacionados con: ${query}`);
-        } else {
-            alert("Por favor ingrese una palabra clave.");
+            // Codifica el término de búsqueda para que pueda viajar seguro en la URL
+            const encodedQuery = encodeURIComponent(query);
+            
+            // Redirige al catálogo con el parámetro 'search'
+            window.location.href = `catalog.html?search=${encodedQuery}`;
         }
+    };
+
+    // 1. Evento para el botón de búsqueda
+    if (searchBtn) {
+        searchBtn.addEventListener('click', handleSearch);
     }
-    
-    animateSearch() {
-        if (this.searchBtn) {
-            this.searchBtn.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                this.searchBtn.style.transform = 'scale(1)';
-            }, 150);
-        }
+
+    // 2. Evento para la tecla 'Enter' en el campo de texto
+    if (searchInput) {
+        searchInput.addEventListener('keypress', (event) => {
+            // Código 13 es la tecla Enter
+            if (event.key === 'Enter') { 
+                handleSearch();
+                event.preventDefault(); // Evita que el formulario se envíe (si estuviera en uno)
+            }
+        });
     }
-    
-    showSuggestions() {
-        const query = this.searchInput.value.trim();
-        if (query.length > 2) {
-            console.log(`Showing suggestions for: ${query}`);
-        }
-    }
-}
+});
 /*class ShoppingCart {
     constructor() {
         this.cartBtn = document.querySelector('.cart-btn');
